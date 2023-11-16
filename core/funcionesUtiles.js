@@ -1,5 +1,5 @@
 /**
- * @author Alvaro Cordero Miñambres
+ * @author Alvaro Cordero Miñambres Chupa pitos
  * @version 1.0
  * @since 16-11-2023
  * @description Este documento contiene algunas funciones que pueden ser utiles a lo largo del curso,
