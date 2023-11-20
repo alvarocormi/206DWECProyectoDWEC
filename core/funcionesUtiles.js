@@ -134,3 +134,27 @@ function validateNIF(dni) {
   }
 
 
+/**
+ * 
+ * @param {*} entero 
+ * @returns
+ * @author Carlos García Cachón 
+ * 
+ * Mediante esta funcion puedes validar si el valor que hemos introducido es un número y
+ * si esta dentro del valor 'max' máximo y 'min' mínimo.
+ */
+  function validateNumberInRange(number, min, max) {
+    // Verificar si el argumento es un número entero
+    if (!Number.isInteger(number)) {
+        return false; // Si no es un número devolvemos 'false'
+    }
+
+    // Verificar si el número está dentro del rango especificado
+    if (number >= min && number <= max) {
+        return true; // Si es un número y está dentro del rango especificado devolvemos 'true'
+    } else {
+        return false; // Es un número pero esta fuera de rango 'false'
+    }
+}
+
+
