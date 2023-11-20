@@ -49,13 +49,14 @@ function obtenerMensajeFecha(fecha) {
 
 function crearFecha(dia, mes, anyo, hora, minutos, segundos) {
 	var fechaNueva;
-	//Si el tamaño e los argumentos recbidos en la funcion es igual a 0
+	//Si el tamaño de los argumentos recbidos en la funcion es igual a 0
 	if (arguments.length == 0) {
 		fechaNueva = new Date();
 
 		//Devuelve la fecha actual formateada
 		return alert(fechaFormateada);
 	} else {
+		//Creamos una nueva fecha y la formateamos
 		fechaNueva = new Date(dia, mes, anyo, hora, minutos, segundos);
 		var fechaFormateada = obtenerMensajeFecha(fechaNueva)
 

@@ -63,7 +63,7 @@ function getDayOfWeek(fecha) {
  * 
  * @param {*} fecha
  * @returns 
- * @author Alvaro Cordero Miñambres
+ * @author Alvaro Cordero Miñambres, Carlos Garcia Cachon
  * 
  * Mediante esta funcion podremos obtener un mes de una fecha especifica
  */
@@ -104,7 +104,7 @@ function validateCP(codigoPostal) {
  * 
  * @param {*} dni 
  * @returns 
- * @author Alvaro Cordero Miñambres
+ * @author Alvaro Cordero Miñambres, Carlos Garcia Cachion
  * 
  * Mediante esta funcion puedes validar si el nif que hemos introducido como parametro es correcto
  */
