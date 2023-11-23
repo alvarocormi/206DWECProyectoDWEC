@@ -31,29 +31,29 @@
     />
     <!--CSS-->
     <link rel="stylesheet" href="./webroot/css/main.css" />
-    <link rel="stylesheet" href="./webroot/css/proyectoDIW.css" />
+    <link rel="stylesheet" href="./webroot/css/proyectoDWEC.css" />
 
     <title>Alvaro Cordero Miñambres</title>
   </head>
   <body>
     <header>
       <div class="daw">
-        <span>DIW.</span>
+        <span>DWEC.</span>
       </div>
     </header>
     <main>
       <div class="contenido">
-        <h1>Desarrollo De Interfaces Web</h1>
-        <h2>Desarrollo De Interfaces Web</h2>
+        <h1>Desarrollo Web En Entorno Cliente</h1>
+        <h2>Desarrollo Web En Entorno Cliente</h2>
         <p>IES LOS SAUCES - BENAVENTE</p>
       </div>
       <div class="items">
         <div class="card" style="width: 15rem; height: 160px">
           <div class="card-body">
             <h5 class="card-title text-center">
-              PR-1-2-1
+                Apuntes
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
+            <h6 class="card-subtitle mb-2 text-muted text-center">documentacion</h6>
             <a href="./ejercicios/1-2-1 Tipografia1/1-2-1 Tipografia1.html" target="_blank" class="btn"
               style="margin-top: 35px;">Ver mas</a
             >
@@ -62,9 +62,20 @@
         <div class="card" style="width: 15rem; height: 160px">
           <div class="card-body">
             <h5 class="card-title text-center">
-              PR-1-1-1
+                Primeros pasos
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
+            <h6 class="card-subtitle mb-2 text-muted text-center">JavaScript</h6>
+            <a href="./ejercicios/1-2-1 Tipografia1/1-2-1 Tipografia1.html" target="_blank" class="btn"
+              style="margin-top: 35px;">Ver mas</a
+            >
+          </div>
+        </div>
+        <div class="card" style="width: 15rem; height: 160px">
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              Node
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Introduccion a node</h6>
             <a href="./ejercicios/PR-1-1-1/pr-1-1-1.html" target="_blank" class="btn"
               style="margin-top: 35px;">Ver mas</a
             >
@@ -72,8 +83,8 @@
         </div>
         <div class="card" style="width: 15rem; height: 160px">
           <div class="card-body">
-            <h5 class="card-title text-center">PR-1-1-2</h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
+            <h5 class="card-title text-center">Arrays</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Arrays en JavaScript</h6>
             <a href="./ejercicios/PR-1-1-2/PR-1-1-2.html" target="_blank" class="btn"
             style="margin-top: 35px;">Ver mas</a
           >
@@ -83,8 +94,8 @@
       <div class="items" style="margin-top: 20px;">
         <div class="card" style="width: 15rem; height: 160px">
           <div class="card-body">
-            <h5 class="card-title text-center">PR-1-2-3</h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
+            <h5 class="card-title text-center">Funciones</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Funciones en javascript</h6>
             <a href=".//ejercicios/PR-1-2-3/PR-1-2-3.html" target="_blank" class="btn"
             style="margin-top: 35px;">Ver mas</a
           >
@@ -93,32 +104,12 @@
         <div class="card" style="width: 15rem; height: 160px">
           <div class="card-body">
             <h5 class="card-title text-center">
-              PR-2-2
+              Objetos 
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Objetos y clases en JS</h6>
             <a href="./ejercicios/PR-2-2/PR-2-2.html" target="_blank" class="btn"
             style="margin-top: 35px;">Ver mas</a
           >
-          </div>
-        </div>
-        <div class="card" style="width: 15rem; height: 160px">
-          <div class="card-body">
-            <h5 class="card-title text-center">PR 2-3</h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
-            <a href="./ejercicios/PR-2-3/PR-2-3.html" target="_blank" class="btn"
-              style="margin-top: 35px;">Ver mas</a
-            >
-          </div>
-        </div>
-        <div class="card" style="width: 15rem; height: 160px">
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              PR 2-4
-            </h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">HTML | CSS</h6>
-            <a href="./ejercicios/PR-2-4/" target="_blank" class="btn"
-              style="margin-top: 35px;">Ver mas</a
-            >
           </div>
         </div>
       </div>

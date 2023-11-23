@@ -22,33 +22,51 @@ alert con la información en el siguiente formato:
  * @returns 
  * 
  */
+
+
+function obtenerMensajeFecha(fecha) {
+	// Verificar si se proporcionó una fecha, de lo contrario, usar la fecha actual
+	if (!fecha) {
+		fecha = new Date();
+	}
+	// Configurar las opciones de formato para toLocaleDateString()
+	var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+	// Obtener la parte de la fecha formateada
+	var parteFecha = fecha.toLocaleDateString(undefined, opcionesFecha);
+
+	// Obtener la parte de la hora
+	var horas = fecha.getHours();
+	var minutos = fecha.getMinutes();
+	var segundos = fecha.getSeconds();
+
+	// Construir la cadena completa
+	var resultado = "Hoy es " + parteFecha + " y son las " + horas + " horas, " + minutos + " minutos y " + segundos + " segundos.";
+
+	// Devolver el resultado
+	return resultado;
+}
+
 function crearFecha(dia, mes, anyo, hora, minutos, segundos) {
-	//Creamos unavariable para almacenar la fecha formateda
-	var fechaFormateada;
-
-	//Si el tamaño e los argumentos recbidos en la funcion es igual a 0
+	var fechaNueva;
+	//Si el tamaño de los argumentos recbidos en la funcion es igual a 0
 	if (arguments.length == 0) {
-		/**
-		 * Este método devuelve el objeto date como una cadena utilizando las convenciones locales.
-		 */
-		fechaFormateada = new Date().toLocaleDateString();
+		fechaNueva = new Date();
 
 		//Devuelve la fecha actual formateada
 		return alert(fechaFormateada);
-	}else {
-		//Si no es igual a 0 , nos devuelve la fecha formateada
-		/**
-		 * Este método devuelve el objeto date como una cadena utilizando las convenciones locales.
-		 */
-		fechaFormateada = new Date(dia,mes,anyo,hora,minutos,segundos).tolocalDateString();
+	} else {
+		//Creamos una nueva fecha y la formateamos
+		fechaNueva = new Date(dia, mes, anyo, hora, minutos, segundos);
+		var fechaFormateada = obtenerMensajeFecha(fechaNueva)
 
 		//Devuelve la fecha actual formateada
 		return alert(fechaFormateada);
-
 	}
 
 }
 
+
 //Llamamos a la funcion
-crearFecha();
+crearFecha(1, 1, 1, 1, 1, 1);
 
