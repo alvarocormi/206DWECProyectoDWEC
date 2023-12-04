@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagen Responsiva</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function mostrarImagenSegunTamaño() {
+    var anchoPantalla = window.innerWidth;
+    var altoPantalla = window.innerHeight;
+    var imagen = document.getElementById('imagen');
+
+    if (anchoPantalla > 600 && altoPantalla > 400) {
+      // Si el ancho de la pantalla es mayor que 600 y el alto es mayor que 400, muestra la imagen grande
+      imagen.src = './img/mike.jpg';
+    } else {
+      // De lo contrario, muestra la imagen pequeña
+      imagen.src = './img/Pablo_Motos.jpg';
+    }
+  }
+
+  // Llamar a la función al cargar la página y al cambiar el tamaño de la ventana
+  window.onload = mostrarImagenSegunTamaño;
+  window.addEventListener('resize', mostrarImagenSegunTamaño);
+
+  function obtenerDimensionesBarraTareas() {
+  // Obtener las dimensiones externas de la ventana del navegador
+  var ventanaExternaAncho = window.outerWidth;
+  var ventanaExternaAlto = window.outerHeight;
+
+  // Obtener las dimensiones internas de la ventana del navegador
+  var ventanaInternaAncho = window.innerWidth;
+  var ventanaInternaAlto = window.innerHeight;
+
+  // Calcular el ancho y alto de la barra de tareas
+  var barraTareasAncho = ventanaExternaAncho - ventanaInternaAncho;
+  var barraTareasAlto = ventanaExternaAlto - ventanaInternaAlto;
+
+  console.log("Ancho de la barra de tareas: " + barraTareasAncho + " px");
+  console.log("Alto de la barra de tareas: " + barraTareasAlto + " px");
+}
+
+// Llamar a la función para obtener las dimensiones de la barra de tareas
+obtenerDimensionesBarraTareas();
+
+</script>
+
+<img id="imagen" src="./img/mike.jpg" alt="Imagen Responsiva">
+
+</body>
+</html>
