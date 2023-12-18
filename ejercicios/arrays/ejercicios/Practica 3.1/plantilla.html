@@ -4,7 +4,27 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Practica 3.1 Alvaro Cordero</title>
-	<script src="./ejercicio4.js"></script>
+	<script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Pedir al usuario que ingrese un número
+        var numero = prompt("¿Que ejercicio quieres ejecutar?:");
+
+        // Verificar si el usuario ingresó un número válido
+        if (numero !== null && !isNaN(numero)) {
+          // Crear un nuevo script element
+          var nuevoScript = document.createElement("script");
+
+          // Establecer el src del script dinámicamente usando el número ingresado
+          nuevoScript.src = `./ejercicio${numero}.js`;
+
+          // Agregar el script al final del cuerpo del documento
+          document.body.appendChild(nuevoScript);
+        } else {
+          alert("Por favor, ingrese un número válido.");
+        }
+        // Tu código aquí
+      });
+    </script>
 </head>
 <body>
 	

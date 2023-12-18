@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio6 - Alvaro Cordero</title>
+    <style>
+      .capas {
+        height: 98vh;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      #capa1 {
+        margin: 40px;
+        width: 200px;
+        height: 100px;
+        outline: 1px solid black;
+        background-color: yellow;
+      }
+
+      #capa2 {
+        margin: 40px;
+        width: 200px;
+        height: 100px;
+        outline: 1px solid black;
+        background-color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="capas">
+      <div id="capa1" draggable="true">Soy arrastrable</div>
+      <div id="capa2">Soy el destino</div>
+    </div>
+
+    <script>
+      /**
+       * @author Alvaro Corderp Miñambres
+       * 
+       * Crea una aplicación que muestre dos capas del mismo tamaño concretamente 200 píxeles de ancho por
+          100 de alto. La primera capa mostrará el texto “Soy arrastrable” y tendrá fondo amarillo y la segunda
+          muestra “Soy el destino” y tiene fondo blanco. Ambas dejan un borde de un píxel negro. la aplicación
+          permite arrastrar la primera sobre la segunda. Durante el arrastre, la primera capa se mostrará con una
+          opacidad del 50%. Al arrastrar sobre la segunda, esta (el destino) se muestra con fondo rojo. Al soltar en
+          esa segunda capa, la primera desaparece y en la segunda aparecerá el texto “¡Lo has logrado!”
+       * */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var capa1 = document.getElementById("capa1");
+        var capa2 = document.getElementById("capa2");
+
+        capa1.addEventListener("dragstart", function () {
+          capa1.style.opacity="50%";        
+        });
+
+        capa1.addEventListener("dragend", function () {
+          capa1.style.opacity="100%"; 
+        });
+
+        capa2.addEventListener("dragover", function (e) {
+          capa2.style.backgroundColor="red";  
+          e.preventDefault();      
+        });
+
+        capa2.addEventListener("dragleave", function () {
+          capa2.style.backgroundColor="white";
+        });
+
+        capa2.addEventListener("drop", function () {
+          capa2.innerText="Lo has logrado!!"
+          capa1.style.display="none";
+        });
+      
+      });
+    </script>
+  </body>
+</html>
