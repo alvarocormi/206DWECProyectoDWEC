@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio2 - Alvaro Cordero</title>
+    <style>
+      body {
+        box-sizing: border-box;
+        background-color: black;
+        color: white;
+        background-image: none;
+      }
+
+      .texto {
+        display: flex;
+        height: 98vh;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body id="documento">
+    <div class="texto">
+      <h2 id="texto">Pulsa Alt + F12 para cambiar la imagen de fondo</h2>
+    <script>
+      /**
+     * @author Alvaro Cordero Miñambres
+     * 
+     * Crea una página web que tenga un texto que indique que al pulsar alt+F12, podremos colocar una
+     * imagen de fondo. El texto tiene que salir centrado. La idea es qué inicialmente aparezca una pantalla
+     * negra con el texto y hasta que el usuario no pulse la tecla, la imagen no se muestre.
+     */
+
+     //Creamos un evento para que carge el DOM antes de ejecutar el JavaScript 
+      document.addEventListener("DOMContentLoaded", function () {
+
+        //Cogemos la etiqueta body
+        var documento = document.getElementById('documento');
+
+        //Añadimos el evento de cuando se pulse la tecla
+        document.addEventListener("keydown", function (e) 
+        {
+
+          //Si se han pulsado la tecla Alt + F12
+          if(e.altKey && event.key === 'F12') {
+
+            //Generamos un numero aleatorio para que se cambie la imagen
+            var numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+            
+            //Cambiamos la imagen de fondo
+            documento.style.backgroundImage=`url('https://picsum.photos/id/${numeroAleatorio}/1920/1080')`;
+          }
+          
+        });
+      });
+    </script>
+    </div>
+    
+  </body>
+</html>

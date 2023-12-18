@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alvaro Cordero Miñambres</title>
+</head>
+
+<body>
+  <main>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <h2>Lista Aleatoria</h2>
+          <ul id="lista"></ul>
+          <script>
+            // Lista de palabras
+            const lista = ["Mercedes-Benz", "BMW", "Audi", "Lexus", "Jaguar", "Porsche", "Bentley", "Rolls-Royce", "Ferrari", "Lamborghini"];
+            
+            // Función para presentar la lista inicial
+            function orderList() {
+              
+
+              // Obtén la referencia al elemento <ul> por su ID
+              var listaUl = document.getElementById("lista");
+
+              // Itera a través de la lista con un retraso de 1 segundo entre cada elemento
+              for (var i = 0; i < lista.length; i++) {
+                // Función inmediatamente invocada para capturar el valor actual de 'i'
+                (function (index) {
+                  // Crea un elemento <li>
+                  var listItem = document.createElement("li");
+
+                  // Asigna el texto del elemento de la lista actual al contenido del <li>
+                  listItem.textContent = lista[index];
+
+                  // Agrega el elemento <li> al <ul> después de un retraso
+                  setTimeout(function () {
+                    listaUl.appendChild(listItem);
+
+                    // Verifica si es el último elemento antes de mostrar el botón
+                    if (index === lista.length - 1) {
+                      setTimeout(function () {
+                        document.getElementById("miBoton").style.display = "block";
+                      }, 3000);
+                    }
+                  }, index * 1000); // index * 1000 para un retraso de 1 segundo
+                })(i);
+              }
+            }
+
+            // Llamar a la función orderList cuando se cargue la página
+            window.onload = orderList;
+
+            // Función para reiniciar la lista con un nuevo orden
+            function reiniciarLista() {
+              document.getElementById("miBoton").style.display = "none";
+              // Obtén la referencia al elemento <ul> por su ID
+              var listaUl = document.getElementById("lista");
+
+              // Elimina todos los elementos de la lista
+              while (listaUl.firstChild) {
+                listaUl.removeChild(listaUl.firstChild);
+              }
+
+              // Lista de palabras ordenada alfabéticamente
+              const listaOrdenada = lista.sort();
+
+              // Itera a través de la lista ordenada con un retraso de 1 segundo entre cada elemento
+              for (var i = 0; i < listaOrdenada.length; i++) {
+                // Función inmediatamente invocada para capturar el valor actual de 'i'
+                (function (index) {
+                  // Crea un elemento <li>
+                  var listItem = document.createElement("li");
+
+                  // Asigna el texto del elemento de la lista ordenada actual al contenido del <li>
+                  listItem.textContent = listaOrdenada[index];
+
+                  // Agrega el elemento <li> al <ul> después de un retraso
+                  setTimeout(function () {
+                    listaUl.appendChild(listItem);
+                  }, index * 1000); // index * 1000 para un retraso de 1 segundo
+                })(i);
+              }
+            }
+          </script>
+        </div>
+        <div class="col">
+          <button id="miBoton" style="display: none;" onclick="reiniciarLista()">¿Ordenar Alfabéticamente?</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

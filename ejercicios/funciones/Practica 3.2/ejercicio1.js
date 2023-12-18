@@ -1,45 +1,31 @@
-/*1. Crea una función que muestre números de la serie de Fibonacci. La función recibirá como parámetro el
-número de elementos de la serie que queremos que muestre. Este dato se lo solicitaremos al usuario. Debes
-crear dos funciones para resolver este problema, una recursiva y otra iterativa.
+/* 1. Crea una función que muestre números de la serie de Fibonacci. 
+                           La función recibirá como parámetro el número de elementos de la serie que queremos que muestre. 
+                           Este dato se lo solicitaremos al usuario. Debes crear dos funciones para resolver este problema, una recursiva y otra iterativa. 
+                           */
+//Entrada de datos parseada a enteros
+document.addEventListener("DOMContentLoaded", function () {
+  var numeroVueltas = parseInt(prompt("Introduce un entero positivo: "));
 
-Autor: Alvaro Cordero Miñambres
-*/
-
-// Función recursiva para calcular la serie de Fibonacci
-function fibonacciRecursivo(n) {
-  if (n == 0) {
-    return 0;
-  } else if (n == 1) {
-    return 1;
+  //Declaración de variables
+  var pos1 = 0;
+  var pos2 = 1;
+  var acumulador = 0;
+  //Bucle para sumar los numeros hasta el introducido por teclado
+  for (let i = 2; i <= numeroVueltas; i++) {
+    acumulador = pos1 + pos2;
+    pos1 = pos2;
+    pos2 = acumulador;
   }
-  return fibonacciRecursivo(n - 1) + fibonacciRecursivo(n - 2);
-}
+  alert("(ITERATIVA)En número de Fibonacci en la posición " + numeroVueltas + " es: " + pos2 + "");
 
-alert(fibonacciRecursivo(n));
-
-var num1 = 0;
-var num2 = 0;
-var num3 = 0;
-
-// Función iterativa para calcular la serie de Fibonacci
-function fibonacciIterativo(n) {
-  for (let i = 0; i < n; i++) {
-    num3 = num1+num2;
-    num1 += num2;
-    num2 += num1;
-    
+  //Función recursiva
+  function fibonacci(numeroVueltas) {
+    if (numeroVueltas <= 1) {
+      return numeroVueltas;
+    } else {
+      return fibonacci(numeroVueltas - 1) + fibonacci(numeroVueltas - 2);
+    }
   }
-  return(num3)
-}
 
-
-// Solicitar al usuario el número de elementos que desea mostrar
-const n = parseInt(prompt("Introduce el número de elementos de la serie de Fibonacci que deseas mostrar:"));
-
-// Mostrar la serie de Fibonacci utilizando la función recursiva
-const fibRecursivo = fibonacciRecursivo(n);
-console.log("Serie de Fibonacci (Recursiva):", fibRecursivo);
-
-// Mostrar la serie de Fibonacci utilizando la función iterativa
-const fibIterativo = fibonacciIterativo(n);
-console.log("Serie de Fibonacci (Iterativa):", fibIterativo);
+  alert("(RECURSIVA)En número de Fibonacci en la posición " + numeroVueltas + " es: " + fibonacci(numeroVueltas));
+});

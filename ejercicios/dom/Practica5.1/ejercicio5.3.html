@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alvaro Cordero</title>
+</head>
+
+<body>
+  <main>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <form class="text-center">
+            <label for="words">Introduce texto: </label>
+            <input type="text" id="words" maxlength="50" required />
+            <label for="position">Introduce posición (1-10):</label>
+            <input type="number" id="position" min="1" max="10" required />
+            <button type="button" onclick="insertWords()">
+                Buscar
+            </button>
+        </form>
+          <ol id="list">
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi, laudantium, itaque consectetur deserunt odit suscipit aliquid quisquam quidem laborum molestias numquam eius illum, libero assumenda sed maxime nostrum velit? Tempore.</li>
+            <li>Incidunt necessitatibus asperiores temporibus voluptatum in suscipit voluptate maxime illo corrupti nisi aliquid aliquam natus nemo quis, ab deleniti corporis dolor mollitia sed quidem! Cupiditate repudiandae voluptates perferendis delectus doloribus.</li>
+            <li>Quia quos voluptate earum enim odio dolorem accusamus exercitationem doloribus ea deleniti perspiciatis sunt iusto voluptates rem, sed quod placeat. Placeat nesciunt et officia fuga soluta molestias amet, unde veniam!</li>
+            <li>Officia iste aliquam id vitae ratione error adipisci nisi, quam ab dolor cumque delectus culpa natus, nostrum doloribus exercitationem repellendus iusto sint ipsa provident obcaecati. Quod commodi ex magnam quas?</li>
+            <li>Quod suscipit quibusdam, deserunt culpa ratione ab illum ut perferendis temporibus numquam, corporis, inventore dolore ipsum accusamus eius quae odit! Incidunt esse enim illum molestias ullam dolorem natus fuga autem!</li>
+            <li>Laboriosam vitae exercitationem nesciunt at illum aperiam perspiciatis impedit nobis, placeat vero sapiente iure ad, nisi similique. Nulla atque culpa cumque, laborum eum alias rem aliquam totam error ipsam! Dicta!</li>
+            <li>Deserunt voluptatibus pariatur iste aperiam ut ipsum laudantium praesentium sequi enim, consectetur quam temporibus assumenda eligendi facere provident culpa exercitationem facilis veniam tempore excepturi! Assumenda expedita culpa porro exercitationem illum!</li>
+            <li>Ipsum, impedit! Culpa sapiente aperiam eaque vero. In tempora vero, aliquid animi cumque tempore corrupti similique nam architecto cum voluptas, nihil totam, beatae nobis! Laudantium accusantium assumenda in deserunt mollitia!</li>
+            <li>Corporis vitae quibusdam eos sed deserunt quod magni a autem, quae dolorem minima illo ab accusantium laboriosam corrupti provident sapiente odit aliquam in sunt consequatur tempora quo? Quaerat, quisquam architecto.</li>
+            <li>Ipsum, impedit! Culpa sapiente aperiam eaque vero. In tempora vero, aliquid animi cumque tempore corrupti similique nam architecto cum voluptas, nihil totam, beatae nobis! Laudantium accusantium assumenda in deserunt mollitia!</li>
+          </ol>
+          <script>
+            function insertWords() {
+              let position = parseInt(document.getElementById("position").value);
+              let words = document.getElementById("words").value;
+              
+              // Verificar que la posición sea válida
+              if (position >= 1 && position <= 10) {
+                  let listItems = document.getElementsByTagName("li");
+
+                  // Ajustar la posición a un índice de array (restar 1)
+                  let adjustedPosition = position - 1;
+
+                  // Modificar el contenido del elemento li en la posición indicada
+                  if (listItems[adjustedPosition]) {
+                      listItems[adjustedPosition].innerHTML += `<strong>${words}</strong>`;
+                  } else {
+                      alert("Posición fuera de rango");
+                  }
+              } else {
+                  alert("Por favor, introduce una posición válida (1-10).");
+              }
+          }
+        </script>
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio3 - Alvaro Cordero</title>
+    <style>
+       * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0; /* Agrega esto para quitar el margen predeterminado del body */
+        height: 100vh; /* Establece la altura del body al 100% de la ventana */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #capa {
+        height: 50vh;
+        width: 50%;
+        border: 1px solid grey;
+        background-color: none;
+      }
+    </style>
+  </head>
+  <body id="documento">
+    <div id="capa"></div>
+    <script>
+      /**
+     * @author Alvaro Cordero Miñambres
+     * 
+     * Crear una aplicación web que muestre una capa centrada que ocupe el 50% del ancho y el alto de la
+      ventana.
+          a. Inicialmente la capa será blanca y solo se verá el borde.
+          b. Al acercar el ratón se colorea de verde.
+          c. Al hacer clic encima con el botón principal se colorea de rojo, pero solo mientras el botón
+          principal está abajo, si está arriba, entonces se quita el color rojo.
+          d. Al hacer clic encima con el botón secundario ocurre lo mismo que en el caso anterior, pero se
+          muestra el color azul. No se mostrará en ningún caso el menú de contexto.
+
+     */
+
+      //Creamos un evento para que carge el DOM antes de ejecutar el JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+        //Cogemos la etiqueta body
+        var capa = document.getElementById("capa");
+
+        //Añadimos el evento de cuando se situe el mouse encima de la capa
+        capa.addEventListener("mouseover", function (e) {
+
+          //Ponemos de color verde la capa
+          capa.style.backgroundColor = "green";
+        });
+
+        /**
+         * Cuando pulsamos algun boton del raton
+         * Boton izquierdo = 0
+         * Boton central = 1
+         * Boton derecho = 2
+        */
+        capa.addEventListener("mousedown", function (e) {
+
+          //Si se ha pulsado el boton derecho del raton
+          if (e.button === 2) {
+
+            //Ponemos la capa de color azul
+            capa.style.backgroundColor = "blue";
+
+            //Si se ha pulsado el boton izquierdo
+          } else if(e.button === 0) {
+
+            //Ponemos la capa de color rojo
+            capa.style.backgroundColor = "red";
+          }
+        });
+
+        //Cuando se deja de pulsar cualquier click
+        capa.addEventListener("mouseup", function (e) {
+
+          //Ponemos la capa de color verde
+          capa.style.backgroundColor = "green";
+        });
+        
+        //Cuando el raton de sale de la capa
+        capa.addEventListener("mouseleave", function (e) {
+
+          //Ponemos el background color a white
+          capa.style.backgroundColor = "white";
+        });
+
+        //Mediante el evento conextMenu cogemos el evento del click derecho
+        capa.addEventListener("contextmenu", function (e) {
+
+          //Y eliminamos el evento que tiene por defecto el click derecho
+          e.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>

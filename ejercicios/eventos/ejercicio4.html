@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio4 - Alvaro Cordero</title>
+    <style>
+       * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0; /* Agrega esto para quitar el margen predeterminado del body */
+        height: 100vh; /* Establece la altura del body al 100% de la ventana */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #texto {
+        font-size: 3rem;
+      }
+
+      
+    </style>
+  </head>
+  <body id="documento">
+    <div id="texto">Velocidad 0</div>
+    <script>
+      /**
+     * @author Alvaro Cordero Miñambres
+     * 
+     * Crea una aplicación web que muestre el texto: velocidad 0. Si pulsamos la tecla de la flecha hacia arriba
+       del teclado, la velocidad se incremente en 1. Si es la flecha hacia abajo, la velocidad baja en 1. La
+       velocidad no puede sobrepasar los 120 ni descender de cero. Experimenta con los eventos de
+       teclado(keyup, keydown y keypress) para investigar cuál es el más apropiado en este caso
+     */
+
+      //Creamos un evento para que carge el DOM antes de ejecutar el JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+
+        //Cogemos la etiqueta div con el id texto
+        var texto = document.getElementById("texto");
+
+        //Inicializamos un contador a 0
+        var contador = 0;
+
+        //Añadimos un evento que se activo cuando una tecla es presionada
+        document.body.addEventListener("keydown", function (e) {
+
+          //Si la tecla persiona es la flecha hacia arriba
+          if(e.key === 'ArrowUp') {
+
+            //Aumentamos el contador en uno
+            contador++;
+             
+            //Si el contador es menor o igual 120
+             if(contador <= 120) {
+
+              //Añadimos un texto al div que inluya el valor del contador
+              texto.innerText = `Velocidad ${contador}`;
+             } else {
+
+              //Si no ponemos el contador a 120
+              contador = 120;
+             }
+          }
+
+          //Si la tecla persiona es la flecha hacia abajo
+          if(e.key === 'ArrowDown') {
+
+            //Decrementamos el contador en uno
+            contador--;
+            
+            //Si el contador es mayor o igual 0
+            if(contador >= 0) {
+
+              //Añadimos un texto al div que inluya el valor del contador
+              texto.innerText = `Velocidad ${contador}`;
+             } else {
+
+               //Si no ponemos el contador a 0
+              contador = 0;
+             }
+          }
+          
+        });
+      });
+    </script>
+  </body>
+</html>

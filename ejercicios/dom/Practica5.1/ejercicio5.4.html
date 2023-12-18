@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alvaro Cordero</title>
+</head>
+
+<body>
+  <main>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <form class="text-center">
+            <label for="words">Introduce texto: </label>
+            <input type="text" id="words" maxlength="50" required />
+            <button type="button" onclick="searchWords()">
+              Buscar
+            </button>
+          </form>
+          <ol id="list">
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi, laudantium, itaque consectetur deserunt
+              odit suscipit aliquid quisquam quidem laborum molestias numquam eius illum, libero assumenda sed maxime
+              nostrum velit? Tempore.</li>
+            <li>Incidunt necessitatibus asperiores temporibus voluptatum in suscipit voluptate maxime illo corrupti nisi
+              aliquid aliquam natus nemo quis, ab deleniti corporis dolor mollitia sed quidem! Cupiditate repudiandae
+              voluptates perferendis delectus doloribus.</li>
+            <li>Quia quos voluptate earum enim odio dolorem accusamus exercitationem doloribus ea deleniti perspiciatis
+              sunt iusto voluptates rem, sed quod placeat. Placeat nesciunt et officia fuga soluta molestias amet, unde
+              veniam!</li>
+            <li>Officia iste aliquam id vitae  error adipisci nisi, quam ab dolor cumque delectus culpa natus,
+              nostrum doloribus exercitationem repellendus iusto sint ipsa provident obcaecati. Quod commodi ex magnam
+              quas?</li>
+            <li>Quod suscipit quibusdam, deserunt culpa ratione ab illum ut perferendis temporibus numquam, corporis,
+              inventore dolore ipsum accusamus eius quae odit! Incidunt esse enim illum molestias ullam dolorem natus
+              fuga autem!</li>
+            <li>Laboriosam vitae exercitationem nesciunt at illum aperiam perspiciatis impedit nobis, placeat vero
+              sapiente iure ad, nisi similique. Nulla atque culpa cumque, laborum eum alias rem aliquam totam error
+              ipsam! Dicta!</li>
+            <li>Deserunt voluptatibus pariatur iste aperiam ut ipsum laudantium praesentium sequi enim, consectetur quam
+              temporibus assumenda eligendi facere provident culpa exercitationem facilis veniam tempore excepturi!
+              Assumenda expedita culpa porro exercitationem illum!</li>
+            <li>Ipsum, impedit! Culpa sapiente aperiam eaque vero. In tempora vero, aliquid animi cumque tempore
+              corrupti similique nam architecto cum voluptas, nihil totam, beatae nobis! Laudantium accusantium
+              assumenda in deserunt mollitia!</li>
+            <li>Corporis vitae quibusdam eos sed deserunt quod magni a autem, quae dolorem minima illo ab accusantium
+              laboriosam corrupti provident sapiente odit aliquam in sunt consequatur tempora quo? Quaerat, quisquam
+              architecto.</li>
+            <li>Ipsum, impedit! Culpa sapiente aperiam eaque vero. In tempora vero, aliquid animi cumque tempore
+              corrupti similique nam architecto cum voluptas, nihil totam, beatae nobis! Laudantium accusantium
+              assumenda in deserunt mollitia!</li>
+            <li id="pepe">pepe</li>
+          </ol>
+          <script>
+
+
+            function searchWords() {
+              let words = document.getElementById("words").value;
+              let expr = new RegExp(words, 'gi');
+
+
+              document.body.innerHTML = document.body.innerHTML.replace(/<strong>/g, "");
+              document.body.innerHTML = document.body.innerHTML.replace(/<\/strong>/g, "");
+
+
+              function recorrerDOM(elemento) {
+                let expr = new RegExp(words, 'gi');
+                // Imprimir la etiqueta del elemento y su nivel en la consol
+
+                for (let i = 0; i < elemento.children.length; i++) {
+                  // Llamada recursiva para cada hijo
+                  recorrerDOM(elemento.children[i]);
+                }
+
+                if (elemento.textContent.includes(words)) {
+                  elemento.innerHTML = elemento.innerHTML.replace(expr, `<strong>${words}</strong>`);
+                }
+              }
+              // Llamar a la función con el elemento raíz del DOM (puedes ajustar esto según tus necesidades)
+              recorrerDOM(document.body);
+
+            }
+
+          </script>
+        </div>
+      </div>
+  </main>
+  
+</body>
+
+</html>

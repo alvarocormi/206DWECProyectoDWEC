@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio7 - Alvaro Cordero</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+
+      header {
+        display: flex;
+        color: white;
+        width: 100%;
+        justify-content: center;
+        background-color: orangered;
+      }
+
+      main {
+        margin-top: 50px;
+        margin-left: 50px;
+        display: flex;
+      }
+
+      form {
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>INFORME INCIDENCIA</h1>
+    </header>
+    <main>
+      <img src="https://picsum.photos/id/1/500/300" id="img" />
+      <form>
+        <label for="tipo" id="tipo">Tipo de incidencia</label>
+        <select name="transporte" id="transporte">
+          <option id="distribucion">Distribucion</option>
+          <option id="oficina">Oficina</option>
+          <option id="produccion">Produccion</option>
+        </select>
+        <br /><br />
+        <label for="numSerie">Numero De Serie</label>
+        <input type="text" name="numSerie" id="numSerie" />
+        <br /><br />
+        <input
+          type="button"
+          value="Mostrar Descripcion"
+          id="mostrarDescripcion"
+        />
+        <br /><br /><br />
+        <input type="submit" value="Enviar datos" id="enviar" />
+      </form>
+      <div id="error"></div>
+    </main>
+    <script>
+      /**
+       * @author Alvaro Corderp Miñambres
+       * */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        let mostrarDescripcion = document.getElementById("mostrarDescripcion");
+        let transporte = document.getElementById("transporte");
+        let numSerie = document.getElementById("numSerie");
+        let img = document.getElementById("img");
+        let enviar = document.getElementById("enviar");
+        let error = document.getElementById('error');
+
+        var contador = 0;
+
+        function validarNumeroSerie(numeroSerie) {
+          // Expresión regular que cumple con las reglas especificadas
+          var regex = /^\d{3}[A-Z]{4}$/;
+
+          // Comprobación de la cadena con la expresión regular
+          if (regex.test(numeroSerie)) {
+            return true; // Cumple con las reglas
+          } else {
+            return false; // No cumple con las reglas
+          }
+        }
+
+        transporte.addEventListener("change", function () {
+          contador++;
+          img.setAttribute(
+            "src",
+            `https://picsum.photos/id/${contador}/500/300`
+          );
+        });
+
+        mostrarDescripcion.addEventListener("click", function () {
+          var textarea = document.createElement("textarea");
+          textarea.setAttribute("cols", "40");
+          textarea.setAttribute("rows", "10");
+
+          textarea.value = mostrarDescripcion.value;
+
+          var nuevaTextarea = mostrarDescripcion.parentNode.replaceChild(
+            textarea,
+            mostrarDescripcion
+          );
+        });
+
+        enviar.addEventListener("click", function (e) {
+          if (validarNumeroSerie(numSerie.value) !== true) {
+            e.preventDefault();
+            error.innerText = 'Codigo incorrecto';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
