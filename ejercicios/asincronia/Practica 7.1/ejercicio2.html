@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #textContainer {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #closeButton {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ejercicio 2</h1>
+    
+    <button onclick="cargarCatalogo()">Cargar catalogo</button>
+
+    <label for="filtro">Selecciona un filtro:</label>
+    <select id="filtro">
+        <option value="pais">País</option>
+        <option value="discografica">Discográfica</option>
+        <option value="ano">Año</option>
+    </select>
+
+    <div id="textContainer">
+        <div id="textContent">
+            <table>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Artista</th>
+                </tr>
+            </table>
+        </div>
+        <button id="closeButton" onclick="cerrarContenedor()">Cerrar</button>
+    </div>
+
+    <script>
+        function cargarCatalogo() {
+            var textContainer = document.getElementById("textContainer");
+            var textContent = document.getElementById("textContent");
+
+            fetch(`http://daw206.isauces.local/206DWECProyectoDWEC/ejercicios/asincronia/Practica%207.1/cd_catalog.xml`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Archivo no encontrado");
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    textContent.innerHTML = data;
+                    textContainer.style.display = "block";
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }
+
+        function cerrarContenedor() {
+            document.getElementById("textContainer").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

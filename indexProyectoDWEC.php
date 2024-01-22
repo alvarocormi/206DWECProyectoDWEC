@@ -46,21 +46,21 @@
         <div class="card-body">
           <h5 class="card-title text-center">Arrays</h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Arrays en JavaScript</h6>
-          <a href="./ejercicios/arrays/ejercicios/Practica 3.1/plantilla.html" target="_blank" class="btn" style="margin-top: 35px;">Ejecutar</a>
+          <a href="./ejercicios/arrays/ejercicios/Practica 3.1/plantilla.html"  class="btn" style="margin-top: 35px;">Ejecutar</a>
         </div>
       </div>
       <div class="card" style="width: 15rem; height: 160px">
         <div class="card-body">
           <h5 class="card-title text-center">Funciones</h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Funciones en javascript</h6>
-          <a href="./ejercicios/funciones/Practica 3.2/plantilla.html" target="_blank" class="btn" style="margin-top: 35px;">Ejecutar</a>
+          <a href="./ejercicios/funciones/Practica 3.2/plantilla.html"  class="btn" style="margin-top: 35px;">Ejecutar</a>
         </div>
       </div>
       <div class="card" style="width: 15rem; height: 160px">
         <div class="card-body">
           <h5 class="card-title text-center">Node</h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Funcionamiento de Node</h6>
-          <a href="./ejercicios/node/ejercicios/nodeJs/ejercicio1AlvaroCordero.pdf" target="_blank" class="btn" style="margin-top: 35px;">Ejecutar</a>
+          <a href="./ejercicios/node/ejercicios/nodeJs/ejercicio1AlvaroCordero.pdf"  class="btn" style="margin-top: 35px;">Ejecutar</a>
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@
             Objetos
           </h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Objetos y clases en JS</h6>
-          <a href="./ejercicios/objetos/ejercicios/Practica 4.2/index.html" target="_blank" class="btn" style="margin-top: 35px;">Ejecutar</a>
+          <a href="./ejercicios/objetos/ejercicios/Practica 4.2/index.html"  class="btn" style="margin-top: 35px;">Ejecutar</a>
         </div>
       </div>
       <div class="card" style="width: 15rem; height: 160px">
@@ -82,7 +82,7 @@
             Granja
           </h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Objetos y clases en JS</h6>
-          <a href="./ejercicios/objetos/ejercicios/granja/index.html" target="_blank" class="btn" style="margin-top: 35px;">Ejecutar</a>
+          <a href="./ejercicios/objetos/ejercicios/granja/index.html"  class="btn" style="margin-top: 35px;">Ejecutar</a>
         </div>
       </div>
       <div class="card" style="width: 15rem; height: 160px">
@@ -91,7 +91,7 @@
             DOM
           </h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Manejo del DOM en JS</h6>
-          <a href="./ejercicios/dom/indexDOM.html" target="_blank" class="btn" style="margin-top: 35px;">Ver Mas</a>
+          <a href="./ejercicios/dom/indexDOM.html"  class="btn" style="margin-top: 35px;">Ver Mas</a>
         </div>
       </div>
       <div class="card" style="width: 15rem; height: 160px">
@@ -100,7 +100,16 @@
             Eventos
           </h5>
           <h6 class="card-subtitle mb-2 text-muted text-center">Manejo de Eventos en JS</h6>
-          <a href="./ejercicios/eventos/indexEventos.html" target="_blank" class="btn" style="margin-top: 35px;">Ver Mas</a>
+          <a href="./ejercicios/eventos/indexEventos.html"  class="btn" style="margin-top: 35px;">Ver Mas</a>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem; height: 160px">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Asincronia
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted text-center">Manejo de Eventos en JS</h6>
+          <a href="./ejercicios/asincronia/indexAsincronia.html"  class="btn" style="margin-top: 35px;">Ver Mas</a>
         </div>
       </div>
     </div>
