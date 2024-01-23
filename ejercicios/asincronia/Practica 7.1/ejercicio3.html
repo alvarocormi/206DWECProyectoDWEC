@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      button {
+        margin: 10px 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+    <title>App de Catálogo de Discos en JSON</title>
+  </head>
+  <body>
+    <button id="cargarCatalogo">Cargar catálogo</button>
+    <select id="filtro">
+      <option value="titulo_artista">Título y Artista</option>
+      <option value="pais">País</option>
+      <option value="discografica">Discográfica</option>
+      <option value="pais_ano">País y Año</option>
+    </select>
+    <table id="tablaCatalogo">
+      <!-- La tabla se llenará dinámicamente con JavaScript -->
+    </table>
+    <script>
+      let catalogoJson; // Variable global para almacenar el catálogo JSON
+
+      document
+        .getElementById("cargarCatalogo")
+        .addEventListener("click", cargarCatalogo);
+
+      function cargarCatalogo() {
+        // Lógica para cargar el catálogo desde el archivo JSON en el servidor
+        // Aquí se debería realizar una petición AJAX para obtener y procesar el JSON
+
+        // Ejemplo de cómo podría ser la petición AJAX usando Fetch API
+        fetch("catalogo.json")
+          .then((response) => response.json())
+          .then((data) => {
+            catalogoJson = data.CATALOG.CD;
+            procesarCatalogo();
+          });
+      }
+
+      function procesarCatalogo() {
+        const tabla = document.getElementById("tablaCatalogo");
+
+        // Limpiar la tabla antes de llenarla
+        tabla.innerHTML = "";
+
+        // Crear encabezados iniciales
+        const encabezado = tabla.createTHead();
+        const filaEncabezado = encabezado.insertRow();
+        filaEncabezado.insertCell(0).textContent = "Título";
+        filaEncabezado.insertCell(1).textContent = "Artista";
+
+        // Llenar la tabla con datos iniciales (Título y Artista)
+        for (const disco of catalogoJson) {
+          const fila = tabla.insertRow();
+          fila.insertCell(0).textContent = disco.TITLE;
+          fila.insertCell(1).textContent = disco.ARTIST;
+        }
+      }
+
+      // Agregar listener para el cambio en el desplegable
+      document
+        .getElementById("filtro")
+        .addEventListener("change", agregarColumna);
+
+      function agregarColumna() {
+        const filtroSeleccionado = document.getElementById("filtro").value;
+
+        // Verificar la opción seleccionada y agregar la columna correspondiente
+        switch (filtroSeleccionado) {
+          case "pais":
+            agregarColumnaDesdeJSON("COUNTRY", "País");
+            break;
+          case "discografica":
+            agregarColumnaDesdeJSON("COMPANY", "Discográfica");
+            break;
+          case "pais_ano":
+            agregarColumnaDesdeJSON("YEAR", "Año");
+            break;
+          default:
+            break;
+        }
+      }
+
+      function agregarColumnaDesdeJSON(tag, nombreColumna) {
+        const tabla = document.getElementById("tablaCatalogo");
+
+        // Agregar la nueva columna al encabezado
+        const encabezado = tabla.tHead;
+        const nuevaColumna = encabezado.rows[0].insertCell(-1);
+        nuevaColumna.textContent = nombreColumna;
+
+        // Llenar la nueva columna con datos desde el JSON
+        for (const disco of catalogoJson) {
+          const valor = disco[tag];
+          tabla.rows[catalogoJson.indexOf(disco) + 1].insertCell(
+            -1
+          ).textContent = valor;
+        }
+      }
+    </script>
+  </body>
+</html>
