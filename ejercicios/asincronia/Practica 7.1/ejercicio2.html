@@ -1,85 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 2</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        #textContainer {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #f0f0f0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        #closeButton {
-            margin-top: 10px;
-            padding: 5px 10px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      button {
+        margin: 10px 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
     </style>
-</head>
-<body>
-
-    <h1>Ejercicio 2</h1>
-    
-    <button onclick="cargarCatalogo()">Cargar catalogo</button>
-
-    <label for="filtro">Selecciona un filtro:</label>
+    <title>App de Catálogo de Discos</title>
+  </head>
+  <body>
+    <button id="cargarCatalogo">Cargar catálogo</button>
     <select id="filtro">
-        <option value="pais">País</option>
-        <option value="discografica">Discográfica</option>
-        <option value="ano">Año</option>
+      <option value="titulo_artista">Título y Artista</option>
+      <option value="pais">País</option>
+      <option value="discografica">Discográfica</option>
+      <option value="pais_ano">País y Año</option>
     </select>
-
-    <div id="textContainer">
-        <div id="textContent">
-            <table>
-                <tr>
-                    <th>Titulo</th>
-                    <th>Artista</th>
-                </tr>
-            </table>
-        </div>
-        <button id="closeButton" onclick="cerrarContenedor()">Cerrar</button>
-    </div>
-
+    <table id="tablaCatalogo">
+      <!-- La tabla se llenará dinámicamente con JavaScript -->
+    </table>
     <script>
-        function cargarCatalogo() {
-            var textContainer = document.getElementById("textContainer");
-            var textContent = document.getElementById("textContent");
+      let xmlDoc; // Variable global para almacenar el documento XML
 
-            fetch(`http://daw206.isauces.local/206DWECProyectoDWEC/ejercicios/asincronia/Practica%207.1/cd_catalog.xml`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Archivo no encontrado");
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    textContent.innerHTML = data;
-                    textContainer.style.display = "block";
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
+      
+      document
+        .getElementById("cargarCatalogo")
+        .addEventListener("click", cargarCatalogo);
+
+      function cargarCatalogo() {
+        // Lógica para cargar el catálogo desde el documento XML en el servidor
+        // Aquí se debería realizar una petición AJAX para obtener y procesar el XML
+
+        // Ejemplo de cómo podría ser la petición AJAX usando Fetch API
+        fetch("cd_catalog.xml")
+          .then((response) => response.text())
+          .then((data) => {
+            xmlDoc = new DOMParser().parseFromString(data, "text/xml");
+            procesarCatalogo();
+          });
+      }
+
+      function procesarCatalogo() {
+        const discos = xmlDoc.getElementsByTagName("CD");
+        const tabla = document.getElementById("tablaCatalogo");
+
+        // Limpiar la tabla antes de llenarla
+        tabla.innerHTML = "";
+
+        // Crear encabezados iniciales
+        const encabezado = tabla.createTHead();
+        const filaEncabezado = encabezado.insertRow();
+        filaEncabezado.insertCell(0).textContent = "Título";
+        filaEncabezado.insertCell(1).textContent = "Artista";
+
+        // Llenar la tabla con datos iniciales (Título y Artista)
+        for (const disco of discos) {
+          const fila = tabla.insertRow();
+          fila.insertCell(0).textContent =
+            disco.getElementsByTagName("TITLE")[0].textContent;
+          fila.insertCell(1).textContent =
+            disco.getElementsByTagName("ARTIST")[0].textContent;
+        }
+      }
+
+      // Agregar listener para el cambio en el desplegable
+      document
+        .getElementById("filtro")
+        .addEventListener("change", agregarColumna);
+
+      function agregarColumna() {
+        if (!xmlDoc) {
+          console.error("Error: xmlDoc no ha sido inicializado.");
+          return;
         }
 
-        function cerrarContenedor() {
-            document.getElementById("textContainer").style.display = "none";
+        const filtroSeleccionado = document.getElementById("filtro").value;
+
+        // Verificar la opción seleccionada y agregar la columna correspondiente
+        switch (filtroSeleccionado) {
+          case "pais":
+            agregarColumnaDesdeXML("COUNTRY", "País");
+            break;
+          case "discografica":
+            agregarColumnaDesdeXML("COMPANY", "Discográfica");
+            break;
+          case "pais_ano":
+            agregarColumnaDesdeXML("YEAR", "Año");
+            break;
+          default:
+            break;
         }
+      }
+
+      function agregarColumnaDesdeXML(tag, nombreColumna) {
+        const tabla = document.getElementById("tablaCatalogo");
+
+        // Obtener todos los nodos de CD
+        const discos = xmlDoc.getElementsByTagName("CD");
+
+        // Verificar que haya discos antes de intentar acceder a ellos
+        if (!discos || discos.length === 0) {
+          console.error("Error: No se encontraron discos.");
+          return;
+        }
+
+        // Agregar la nueva columna al encabezado
+        const encabezado = tabla.tHead;
+        const nuevaColumna = encabezado.rows[0].insertCell(-1);
+        nuevaColumna.textContent = nombreColumna;
+
+        // Llenar la nueva columna con datos desde el XML
+        for (let i = 0; i < discos.length; i++) {
+          const valor = discos[i].getElementsByTagName(tag)[0].textContent;
+          tabla.rows[i + 1].insertCell(-1).textContent = valor;
+        }
+      }
     </script>
-
-</body>
+  </body>
 </html>
