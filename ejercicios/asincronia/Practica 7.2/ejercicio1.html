@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de Formulario</title>
+    <style>
+      .invalid {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" oninput="validarNombre()" class="invalid" />
+
+    <br />
+
+    <label for="apellidos">Apellidos:</label>
+    <input
+      type="text"
+      id="apellidos"
+      oninput="validarApellidos()"
+      class="invalid"
+    />
+
+    <br />
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" oninput="validarEmail()" class="invalid" />
+
+    <br />
+
+    <label for="nif">NIF:</label>
+    <input type="text" id="nif" oninput="validateNIF()" class="invalid" />
+
+    <br />
+
+    <button id="comprobar" onclick="comprobarFormulario()" disabled>
+      Comprobar
+    </button>
+
+    <div id="resultado"></div>
+
+    <script>
+      // Función para validar el nombre
+      function validarNombre() {
+        var nombreInput = document.getElementById("nombre");
+        if (nombreInput.value.length >= 2) {
+          nombreInput.classList.remove("invalid");
+        } else {
+          nombreInput.classList.add("invalid");
+        }
+        habilitarBoton();
+      }
+
+      // Función para validar los apellidos
+      function validarApellidos() {
+        var apellidosInput = document.getElementById("apellidos");
+        if (apellidosInput.value.length >= 2) {
+          apellidosInput.classList.remove("invalid");
+        } else {
+          apellidosInput.classList.add("invalid");
+        }
+        habilitarBoton();
+      }
+
+      // Función para validar el email
+      function validarEmail() {
+        var emailInput = document.getElementById("email");
+        var email = emailInput.value;
+        if (email.includes("@") && /\w+@\w+\.\w+/.test(email)) {
+          emailInput.classList.remove("invalid");
+        } else {
+          emailInput.classList.add("invalid");
+        }
+        habilitarBoton();
+      }
+
+      // Función para habilitar o deshabilitar el botón de comprobar
+      function habilitarBoton() {
+        var nombreValido =
+          document.getElementById("nombre").classList.contains("invalid") ===
+          false;
+        var apellidosValidos =
+          document.getElementById("apellidos").classList.contains("invalid") ===
+          false;
+        var emailValido =
+          document.getElementById("email").classList.contains("invalid") ===
+          false;
+
+        var botonComprobar = document.getElementById("comprobar");
+        botonComprobar.disabled = !(
+          nombreValido &&
+          apellidosValidos &&
+          emailValido
+        );
+      }
+
+      // Función para comprobar el formulario al hacer clic en el botón
+      function comprobarFormulario() {
+        alert("¡Todo es correcto!");
+        reiniciarFormulario();
+      }
+
+      // Función para reiniciar el formulario
+      function reiniciarFormulario() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellidos").value = "";
+        document.getElementById("email").value = "";
+
+        // Restablecer la clase 'invalid' y desactivar el botón
+        document.getElementById("nombre").classList.add("invalid");
+        document.getElementById("apellidos").classList.add("invalid");
+        document.getElementById("email").classList.add("invalid");
+        document.getElementById("comprobar").disabled = true;
+      }
+
+      function validateNIF() {
+        // Obtener el valor del input
+        const nif = document.getElementById("nif").value;
+
+        // Construir la URL con el parámetro nif
+        const apiUrl = `http://daw206.isauces.local/206DWESAplicacionFinal/api/validateNIF.php?nif=${nif}`;
+
+        // Realizar la solicitud fetch
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {                                
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Manejar la respuesta
+            document.getElementById(
+              "resultado"
+            ).innerHTML = `<p>${data.resultado}</p>`;
+          })
+          .catch((error) => {
+            // Manejar errores
+            console.error("Error:", error);
+            document.getElementById("resultado").innerHTML =
+              "<p>Error al procesar la solicitud</p>";
+          });
+      }
+    </script>
+  </body>
+</html>
