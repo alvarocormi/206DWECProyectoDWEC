@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="generator" content="60" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Ejercicio 4 Alvaro Cordero</title>
+    <link
+      rel="icon"
+      type="image/jpg"
+      href="../webroot/media/images/favicon.ico"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #mapContainer {
+        display: none;
+      }
+
+      #mapImage {
+        width: 700px;
+        height: 750px;
+        rotate: 90deg;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <form id="apiKeyForm">
+        <label for="apiKey">Introduce tu API key:</label>
+        <input type="text" id="apiKey" required />
+        <button type="submit">Cargar Mapa</button>
+      </form>
+
+      <div id="mapContainer">
+        <img id="mapImage" src="" alt="Mapa Meteorológico" />
+      </div>
+
+      <script>
+        const apiKeyForm = document.getElementById("apiKeyForm");
+        const mapContainer = document.getElementById("mapContainer");
+        const mapImage = document.getElementById("mapImage");
+
+        apiKeyForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const apiKey = document.getElementById("apiKey").value;
+          const url = `https://opendata.aemet.es/opendata/api/mapasygraficos/analisis?api_key=${apiKey}`;
+
+          try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const mapUrl = data.datos;
+            const mapResponse = await fetch(mapUrl);
+            const blob = await mapResponse.blob();
+            const objectURL = URL.createObjectURL(blob);
+            mapImage.src = objectURL;
+            mapContainer.style.display = "block";
+            apiKeyForm.style.display = "none";
+          } catch (error) {
+            console.error("Error al cargar el mapa:", error);
+            alert("Error al cargar el mapa. Por favor, verifica tu API key.");
+          }
+        });
+      </script>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
